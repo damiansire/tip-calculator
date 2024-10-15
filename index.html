@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de Propina</title>
+  </head>
+  <body>
+    <h1>Calculadora de Propina</h1>
+
+    <label for="gastoTotal">Gasto total sin propina:</label>
+    <input type="number" id="gastoTotal" name="gastoTotal" /><br /><br />
+
+    <label for="propinaTotal">Cantidad total de propina dada:</label>
+    <input type="number" id="propinaTotal" name="propinaTotal" /><br /><br />
+
+    <label for="gastoPersonal">Gasto hecho por mi:</label>
+    <input type="number" id="gastoPersonal" name="gastoPersonal" /><br /><br />
+
+    <button onclick="calcularPropina()">Calcular mi propina</button>
+
+    <p id="resultado"></p>
+
+    <p id="pago-del-total-correspondiente-a-mi"></p>
+
+    <script>
+      function calcularPropina() {
+        var gastoTotal = parseFloat(document.getElementById("gastoTotal").value);
+        var propinaTotal = parseFloat(document.getElementById("propinaTotal").value);
+        var gastoPersonal = parseFloat(document.getElementById("gastoPersonal").value);
+
+        if (isNaN(gastoTotal) || isNaN(propinaTotal) || isNaN(gastoPersonal)) {
+          document.getElementById("resultado").innerHTML = "Por favor, ingrese valores numéricos válidos.";
+          return;
+        }
+
+        var porcentajePropina = propinaTotal / gastoTotal;
+        var miPropina = porcentajePropina * gastoPersonal;
+
+        var deboDar = miPropina + gastoPersonal;
+
+        document.getElementById("resultado").innerHTML = "Tu propina es: " + miPropina.toFixed(2);
+
+        document.getElementById("pago-del-total-correspondiente-a-mi").innerHTML = "Debes pagar: " + deboDar.toFixed(2);
+      }
+    </script>
+  </body>
+</html>
